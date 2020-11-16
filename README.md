@@ -1,7 +1,7 @@
  > As you complete each section you **must** remove the prompt text. Every *turnin* of this project includes points for formatting of this README so keep it clean and keep it up to date. 
  > Prompt text is any lines beginning with "\<"
  > Replace anything between \<...\> with your project specifics and remove angle brackets. For example, you need to name your project and replace the header right below this line with that title (no angle brackets). 
-# Silicon Shooter
+# Discord Bot
  > Your author list below should include links to all members GitHub and should begin with a "\<" (remove existing author).
  
  > Authors: \<[Andrei Dimaano](https://github.com/andreidimaano)\> \<[Samuel Lagunas](https://github.com/slagu002)\>  \<[Jarvis Bui](https://github.com/jbui019)\>  
@@ -18,27 +18,25 @@
 
 ## Project Description
 
-What would it be like to be a gamedev for 8 weeks?
-Video games are a major part in all the group member's lives. With the advent of video live streaming, video games have grown in popularity. We think that it would be interesting to play the role of a game developer for 8 weeks.
+**Refactored under Professor Reem Ali's discretion**
+
+Discord is an integral part of many students' lives. Whether we are playing video games, studying for classes, or participating in clubs, Discord makes it easier to communicate with eachother. We personally use Discord in order to communicate about classes, labs, and this project (how meta).
 
 - Tech Stack:
-  - C++ : We will be implementing the videogame - characters, assets, gameplay - using C++
-  - C : Implementing controller
-  - Unreal Engine : handle all rendering of the game as well as give us base classes(Playable Characters, Non-Playable Characters, Guns) in order to show the gameplay
-  - gamedev.tv asset packs: All animations, visual assets will be taken from Unreal Engine downloadable packs and gamedev.tv packs
-  - Controller: Using a conventional controller for user input. 
+  - Typescript: While design patterns are *possible* in Javascript, Typescript allows for encapsulation. The added types means that we can code in an object-oriented manner rather than functionally. 
+  - DiscordJS : Useful API that will allow us to create the discord bot, DiscordC++ exists, however, the documentation is not as updated. 
+  - Riot API : The Riot API allows us to get information about a user's last-played match. We will be fetching user data from the Riot API and sending an embedded message in Discord.
 - I/O:
-  - Input: WASD, mouse
-  - Output: Frames of Gameplay 
+  - Input: Messages sent by users in a discord server - "!!Riot [summoner name]" "!!Pomodoro [time]" 
+  - Output: Reply Messages sent by  the bot in a discord server
 
 - 3 Design Patterns:
   - Singleton
-    - We want a single instance of the score. We want the score to be unique and globally accessible so that there are not multiple scores and the score can be changed globally. We will also have one instance of the Character that will act as the sole-controllable player in the game.
+    - Singleton is a creational design pattern that ensures one instance of a class while providing gloabl access point to this instance. There should be only one discord bot per server, otherwise we'd run into running commands more than once. The Discord API Key is stored as an environment variable, so we want to avoid having multiple instances of it as they would conflict with each other. 
   - Command
-    - In our shooter, our character needs to move around. In most games, movement is handled by WASD keys. We want to allow the Character object to make requests. We want to create a CharacterMovement class that handles character movement in all directions. The class will store callback functions that will be triggered when the WASD keys are pressed. 
-  - Observer
-    - A big part of a video game is the achievements that a user can earn. We want to create an Achievements(observer) class that listens to events from the Character(subject). We will also add a healthBar component that will be notified whenever the Character takes damage. Furthermore, we will implement an Ammunition system which listens for a shooting command and will decrease the player's remaining ammunition.
-
+    -  Commands are integral to any discord bot. Almost all discord bots run on commands. Some common commands look like "!play [youtube link]" or "!skip". By using the command pattern, we will encapsulate two commands: "!!Riot" and "!!Pomodoro". Additionally, in the future, it will be easier in order to add more commands because new commands would inherit an abstract command.
+  - Strategy
+    - Strategy is a design pattern that lets me define a family of algorithms. There are several ways to run a pomodoro bot. We will implement three types of studying: long focus & short break, long focus & long break, short focus & short break, and short focus & last break. If we would like to implement more strategies, we could just add them as inheritors of the strategy interface.
 
  > ## Phase II
  > In addition to completing the "Class Diagram" section below, you will need to 
