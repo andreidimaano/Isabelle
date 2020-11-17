@@ -32,18 +32,7 @@ Discord is an integral part of many students' lives. Whether we are playing vide
     - Strategy is a design pattern that lets me define a family of algorithms. There are several ways to run a pomodoro bot. We will implement three types of studying: long focus & short break, long focus & long break, short focus & short break, and short focus & last break. If we would like to implement more strategies, we could just add them as inheritors of the strategy interface.
 
  > ## Phase II
- > In addition to completing the "Class Diagram" section below, you will need to 
- > * Set up your GitHub project board as a Kanban board for the project. It should have columns that map roughly to 
- >   * Backlog, TODO, In progress, In testing, Done
- >   * You can change these or add more if you'd like, but we should be able to identify at least these.
- > * There is no requirement for automation in the project board but feel free to explore those options.
- > * Create an "Epic" (note) for each feature and each design pattern and assign them to the appropriate team member. Place these in the `Backlog` column
- > * Complete your first *sprint planning* meeting to plan out the next 7 days of work.
- >   * Create smaller development tasks as issues and assign them to team members. Place these in the `Backlog` column.
- >   * These cards should represent roughly 7 days worth of development time for your team, taking you until your first meeting with the TA
-## Class Diagram
- > Include a class diagram(s) for each design pattern and a description of the diagram(s). This should be in sufficient detail that another group could pick up the project this point and successfully complete it. Use proper OMT notation (as discussed in the course slides). You may combine multiple design patterns into one diagram if you'd like, but it needs to be clear which portion of the diagram represents which design pattern (either in the diagram or in the description). 
-    
+## Class Diagram 
  ![Class Diagram](https://github.com/cs100/final-project-adima009-slagu002-jbui019/blob/master/CS100.png?raw=true)
  
   - Singleton
