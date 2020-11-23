@@ -32,4 +32,14 @@ export class DiscordBot{
     disconnect(): void {
         this.client.destroy();
     }
+
+    private setMessageHandler(): void {
+      this.client.on('message', async (message: Message) => {
+        //* filters out requests from bots
+        if (message.author.bot) return
+        if (message.content === 'ping') {
+          await message.reply('Pong!')
+        }
+      })
+    }
 }
