@@ -1,4 +1,4 @@
-import{ Client } from 'discord.js';
+import{ Client, Message } from 'discord.js';
 
 export class DiscordBot{
     private static instance: DiscordBot;
@@ -11,6 +11,8 @@ export class DiscordBot{
 
     private initializeClient(): void{
         if(!this.client) return;
+
+        this.setMessageHandler();
     }
 
     static getInstance(): DiscordBot {
@@ -36,7 +38,8 @@ export class DiscordBot{
     private setMessageHandler(): void {
       this.client.on('message', async (message: Message) => {
         //* filters out requests from bots
-        if (message.author.bot) return
+        if (message.author.bot) return;
+        
         if (message.content === 'ping') {
           await message.reply('Pong!')
         }
