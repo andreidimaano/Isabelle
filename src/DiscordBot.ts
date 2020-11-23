@@ -1,9 +1,6 @@
 import{ Client } from 'discord.js';
 
 export class DiscordBot{
-    static getInstance() {
-        throw new Error("Method not implemented.");
-    }
     private static instance: DiscordBot;
 
     private client: Client = new Client();
@@ -12,6 +9,17 @@ export class DiscordBot{
         this.initializeClient();
     }
 
+    private initializeClient(): void{
+        if(!this.client) return;
+    }
+
+    static getInstance(): DiscordBot {
+        if (!DiscordBot.instance) {
+          DiscordBot.instance = new DiscordBot();
+        }
+        return DiscordBot.instance;
+      }
+
     connect(): void {
         this.client
           .login(process.env.discord_token)
@@ -19,17 +27,9 @@ export class DiscordBot{
           .catch((error) =>
             console.error(`Could not connect. Error: ${error.message}`)
           );
-      }
+    }
   
-
     disconnect(): void {
         this.client.destroy();
     }
-
-    private initializeClient(): void{
-        if(!this.client) return;
-
-
-    }
-
 }
