@@ -10,7 +10,8 @@
   "license": "MIT",
   "dependencies": {
     "discord.js": "^12.5.0",
-    "dotenv": "^8.2.0"
+    "dotenv": "^8.2.0",
+    "yarn": "^1.22.10"
   },
   "devDependencies": {
     "@types/dotenv": "^8.2.0",
