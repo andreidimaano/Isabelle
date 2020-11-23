@@ -1,6 +1,9 @@
 import{ Client } from 'discord.js';
 
 export class DiscordBot{
+    static getInstance() {
+        throw new Error("Method not implemented.");
+    }
     private static instance: DiscordBot;
 
     private client: Client = new Client();
