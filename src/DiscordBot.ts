@@ -1,9 +1,17 @@
 import{ Client, Message } from 'discord.js';
 
+import { CommandInvoker } from './commands/CommandInvoker'
+
 export class DiscordBot{
     private static instance: DiscordBot;
 
+    private prefix: string = '~';
+
     private client: Client = new Client();
+    private commandInvoker: CommandInvoker = new CommandInvoker(
+      this.client,
+      this.prefix
+    );
 
     private constructor(){
         this.initializeClient();

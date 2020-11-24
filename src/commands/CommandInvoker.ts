@@ -1,11 +1,25 @@
 import { Client, Message } from 'discord.js';
+import { Command, CommandType } from './Command';
 
 export class CommandInvoker {
     constructor(private client: Client, private prefix:string) {}
+    //private command : Command<CommandType>;
 
-    createCommand(message: Message): null {
+    setCommand(message: Message): void | null {
         //need Command interface to implement
-        return null;
+        let keyword =  'ping'
+        let commandType = CommandType[keyword as keyof typeof CommandType];
+        switch (commandType) {
+            case CommandType.say:
+                //command = new SayCommand(message, args);
+
+            case CommandType.ping:
+                //command = new PingCommand(message, this.client);
+            
+
+            default:
+                return null;
+        }
     }
 
     private parseCommand(messageContent: string): void {
