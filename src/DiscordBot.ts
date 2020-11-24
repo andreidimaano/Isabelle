@@ -13,6 +13,7 @@ export class DiscordBot{
         if(!this.client) return;
 
         this.setMessageHandler();
+        this.setReadyHandler();
     }
 
     static getInstance(): DiscordBot {
@@ -33,6 +34,15 @@ export class DiscordBot{
   
     disconnect(): void {
         this.client.destroy();
+    }
+    
+    private setReadyHandler(): void {
+      this.client.on('ready', async () => {
+        console.log(`Logged in as ${this.client.user?.tag}!`)
+        console.log('Discord Bot Connected');
+
+        await this.client.user?.setActivity('Ready to serve!');
+      })
     }
 
     private setMessageHandler(): void {
