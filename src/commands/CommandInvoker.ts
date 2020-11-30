@@ -3,7 +3,7 @@ import { Command, CommandType } from './Command';
 
 export class CommandInvoker {
     constructor(private client: Client, private prefix:string) {}
-    //private command : Command<CommandType>;
+    //private Command : Command<CommandType>;
 
     setCommand(message: Message): void | null {
         //need Command interface to implement

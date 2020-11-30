@@ -1,4 +1,4 @@
-import{ Client, Message } from 'discord.js';
+import{ Client, Message, Guild } from 'discord.js';
 
 import { CommandInvoker } from './commands/CommandInvoker'
 
@@ -70,7 +70,8 @@ export class DiscordBot{
         if (message.author.bot) return;
         
         if (message.content === 'ping') {
-          await message.reply('Pong!')
+          console.log(message.guild?.id);
+          await message.reply(`Pong!`)
         }
       })
     }
