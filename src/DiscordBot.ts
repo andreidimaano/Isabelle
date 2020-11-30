@@ -68,11 +68,16 @@ export class DiscordBot{
       this.client.on('message', async (message: Message) => {
         //* filters out requests from bots
         if (message.author.bot) return;
+        if (message.content.indexOf(this.prefix) !== 0 ) return;
         
-        if (message.content === 'ping') {
-          console.log(message.guild?.id);
-          await message.reply(`Pong!`)
-        }
+        //call commandInvoker
+        this.commandInvoker.setCommand(message);
+        await this.commandInvoker.executeCommand();
+
+        // if (message.content === 'ping') {
+        //   console.log(message.guild?.id);
+        //   await message.reply(`Pong!`)
+        // }
       })
     }
 }
