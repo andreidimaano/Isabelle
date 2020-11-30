@@ -13,6 +13,7 @@ export class DiscordBot{
         if(!this.client) return;
 
         this.setMessageHandler();
+        this.setReadyHandler();
     }
 
     static getInstance(): DiscordBot {
@@ -31,8 +32,28 @@ export class DiscordBot{
           );
     }
   
+
     disconnect(): void {
         this.client.destroy();
+    }
+    
+    getActivity(): String {
+      //this.setReadyHandler();
+      return this.client.user?.presence.activities[0].toString()!;
+    }
+
+    getPresence(): String {
+      //this.setReadyHandler();
+      return this.client.user?.presence.status!;
+    }
+
+    private setReadyHandler(): void {
+      this.client.on('ready', async () => {
+        console.log(`Logged in as ${this.client.user?.tag}!`)
+        console.log('Discord Bot Connected');
+        await this.client.user?.setActivity('VSCode');
+        console.log(this.getActivity());
+      })
     }
 
     private setMessageHandler(): void {

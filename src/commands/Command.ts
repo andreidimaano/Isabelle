@@ -4,6 +4,6 @@ export enum CommandType {
   }
   
   export abstract class Command<CommandType> {
-    abstract async execute(): Promise<void>;
+    abstract execute():  Promise<void>;
     abstract canExecute(): boolean;
   }
