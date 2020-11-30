@@ -1,9 +1,10 @@
 import { Client, Message } from 'discord.js';
 import { Command, CommandType } from './Command';
+import { PingCommand } from './Ping.command';
 
 export class CommandInvoker {
     constructor(private client: Client, private prefix:string) {}
-    //private Command : Command<CommandType>;
+    private command : Command<CommandType>;
 
     setCommand(message: Message): void | null {
         //need Command interface to implement
