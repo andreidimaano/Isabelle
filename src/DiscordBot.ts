@@ -1,9 +1,17 @@
-import{ Client, Message } from 'discord.js';
+import{ Client, Message, Guild } from 'discord.js';
+
+import { CommandInvoker } from './commands/CommandInvoker'
 
 export class DiscordBot{
     private static instance: DiscordBot;
 
+    private prefix: string = '~';
+
     private client: Client = new Client();
+    private commandInvoker: CommandInvoker = new CommandInvoker(
+      this.client,
+      this.prefix
+    );
 
     private constructor(){
         this.initializeClient();
@@ -60,10 +68,16 @@ export class DiscordBot{
       this.client.on('message', async (message: Message) => {
         //* filters out requests from bots
         if (message.author.bot) return;
+        if (message.content.indexOf(this.prefix) !== 0 ) return;
         
-        if (message.content === 'ping') {
-          await message.reply('Pong!')
-        }
+        //call commandInvoker
+        this.commandInvoker.setCommand(message);
+        await this.commandInvoker.executeCommand();
+
+        // if (message.content === 'ping') {
+        //   console.log(message.guild?.id);
+        //   await message.reply(`Pong!`)
+        // }
       })
     }
 }
