@@ -3,6 +3,7 @@ export enum CommandType {
     say,
     default,
     help,
+    riot
   }
   
   export abstract class Command<CommandType> {
