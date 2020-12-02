@@ -4,7 +4,8 @@ export enum CommandType {
     default,
     help,
     riot,
-    kanye
+    kanye,
+    pomodoro
   }
   
   export abstract class Command<CommandType> {
