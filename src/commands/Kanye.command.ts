@@ -3,7 +3,7 @@ import { Client, Message } from 'discord.js';
 import { Command, CommandType } from './Command';
 
 export class KanyeCommand extends Command<CommandType.kanye> {
-    constructor(private message: Message, private client: Client, private summonerName: string) {
+    constructor(private message: Message, private client: Client) {
         super();
     }
 
