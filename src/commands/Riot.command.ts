@@ -10,6 +10,7 @@ export class RiotCommand extends Command<CommandType.riot> {
     async execute(): Promise<void> {
         if(this.canExecute()) {
             try {
+                await this.message.reply('this is the riot command');
                 //await riot receiver
             } catch (err) {
                 console.error(`Could not execute Command Ping. Error: ${err.message}`);

@@ -4,6 +4,7 @@ import { PingCommand } from './Ping.command';
 import { Arguments } from './arguments';
 import { DefaultCommand } from './Default.command';
 import { HelpCommand } from './Help.command'
+import { RiotCommand} from './Riot.command'
 
 export class CommandInvoker {
     constructor(private client: Client, private prefix:string) {}
@@ -21,6 +22,10 @@ export class CommandInvoker {
         switch (commandType) {
             case CommandType.help: {
                 this.command = new HelpCommand(message, this.client);
+                break;
+            }
+            case CommandType.riot: {
+                this.command = new RiotCommand(message, this.client, args.parameter1!);
                 break;
             }
             case CommandType.ping: {
