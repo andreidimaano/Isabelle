@@ -57,7 +57,7 @@ export class CommandInvoker {
                     command: undefined
                 }
             }
-        } else if(args[0].toLowerCase() == 'league') {
+        } else if(args[0].toLowerCase() == 'riot') {
             if(args.length <= 1) {
                 return {
                     command: undefined
