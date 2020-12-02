@@ -10,7 +10,10 @@ export class CommandInvoker {
     setCommand(message: Message): void | null {
         //need Command interface to implement
         let args = this.parseCommand(message.content);
-        
+        console.log(`message sent: ${message.content}`);
+        console.log('args: ');
+        console.log(args);
+
         let keyword =  args.command;
         let commandType = CommandType[keyword as keyof typeof CommandType];
         switch (commandType) {
