@@ -22,7 +22,7 @@ export class HelpCommand extends Command<CommandType.help> {
             { name: '\u200B', value: '\u200B' },
             { name: '!! kanye', value: 'get a random kanye quote'},
             { name: '\u200B', value: '\u200B' },
-            { name: '!! league [summoner name]', value: 'get the stats of [summoner name]\'s latest league game'},
+            { name: '!! riot [summoner name]', value: 'get the stats of [summoner name]\'s latest league game'},
             { name: '\u200B', value: '\u200B' },
         )
 

@@ -40,6 +40,10 @@ let parseCommand = (messageContent: string): Arguments => {
             return {
                 command: undefined
             }
+        } else if (args.length == 3 && (args[1] != 'short' && args[1] != 'long') && (args[2] != 'short' && args[2] != 'long')) {
+            return {
+                command: undefined
+            };
         } else {
             parameter1 = (args.length >= 2) ? args[1] : undefined;
             parameter2 = (args.length >= 3) ? args[2] : undefined;
@@ -111,6 +115,43 @@ describe('ParseCommandTests', () => {
 
             expect(parseCommand('~ pomodoro')).toEqual(expectedValue);
         });
+        it('should return undefined', () => {
+            let expectedValue : Arguments = {
+                command: undefined,
+            };
+
+            expect(parseCommand('~ pomodoro short')).toEqual(expectedValue);
+        });
+        it('should return undefined', () => {
+            let expectedValue : Arguments = {
+                command: undefined,
+            };
+
+            expect(parseCommand('~ pomodoro hello world')).toEqual(expectedValue);
+        });
+        it('should return undefined', () => {
+            let expectedValue : Arguments = {
+                command: undefined,
+            };
+
+            expect(parseCommand('~ pomodoro s s')).toEqual(expectedValue);
+        });
+        it('should return undefined', () => {
+            let expectedValue : Arguments = {
+                command: undefined,
+            };
+
+            expect(parseCommand('~ pomodoro l l')).toEqual(expectedValue);
+        });
+        it('should return correct pomodoro', () => {
+            let expectedValue : Arguments = {
+                command: 'pomodoro',
+                parameter1: 'short',
+                parameter2: 'short'
+            };
+
+            expect(parseCommand('~ pomodoro short short')).toEqual(expectedValue);
+        });
         it('should return correct pomodoro', () => {
             let expectedValue : Arguments = {
                 command: 'pomodoro',
@@ -120,12 +161,23 @@ describe('ParseCommandTests', () => {
 
             expect(parseCommand('~ pomodoro short long')).toEqual(expectedValue);
         });
-        it('should return undefine', () => {
+        it('should return correct pomodoro', () => {
             let expectedValue : Arguments = {
-                command: undefined,
+                command: 'pomodoro',
+                parameter1: 'long',
+                parameter2: 'short'
             };
 
-            expect(parseCommand('~ pomodoro short')).toEqual(expectedValue);
+            expect(parseCommand('~ pomodoro long short')).toEqual(expectedValue);
+        });
+        it('should return correct pomodoro', () => {
+            let expectedValue : Arguments = {
+                command: 'pomodoro',
+                parameter1: 'long',
+                parameter2: 'long'
+            };
+
+            expect(parseCommand('~ pomodoro long long')).toEqual(expectedValue);
         });
     });
 });
