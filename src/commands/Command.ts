@@ -1,7 +1,8 @@
 export enum CommandType {
     ping,
     say,
-    default
+    default,
+    help
   }
   
   export abstract class Command<CommandType> {
