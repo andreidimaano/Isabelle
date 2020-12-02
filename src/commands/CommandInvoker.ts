@@ -2,6 +2,7 @@ import { Client, Message } from 'discord.js';
 import { Command, CommandType } from './Command';
 import { PingCommand } from './Ping.command';
 import { Arguments } from './arguments';
+import { DefaultCommand } from './Default.command';
 
 export class CommandInvoker {
     constructor(private client: Client, private prefix:string) {}
@@ -28,7 +29,7 @@ export class CommandInvoker {
             }
             
             default:
-                return null;
+                this.command = new DefaultCommand(message, this.client);
         }
     }
 
