@@ -6,6 +6,7 @@ import { DefaultCommand } from './Default.command';
 import { HelpCommand } from './Help.command'
 import { RiotCommand} from './Riot.command'
 import { KanyeCommand} from './Kanye.command'
+import { PomodoroCommand} from './Pomodoro.command'
 
 export class CommandInvoker {
     constructor(private client: Client, private prefix:string) {}
@@ -31,6 +32,10 @@ export class CommandInvoker {
             }
             case CommandType.kanye: {
                 this.command = new KanyeCommand(message, this.client);
+                break;
+            }
+            case CommandType.pomodoro: {
+                this.command = new PomodoroCommand(message, this.client, args.parameter1!, args.parameter2!);
                 break;
             }
             case CommandType.ping: {
@@ -87,6 +92,10 @@ export class CommandInvoker {
                 return {
                     command: undefined
                 }
+            } else if (args.length == 3 && (args[1] != 'short' && args[1] != 'long') && (args[2] != 'short' && args[2] != 'long')) {
+                return {
+                    command: undefined
+                };
             } else {
                 parameter1 = (args.length >= 2) ? args[1] : undefined;
                 parameter2 = (args.length >= 3) ? args[2] : undefined;
