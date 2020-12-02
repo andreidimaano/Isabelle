@@ -11,16 +11,6 @@ describe('DiscordBotTest', () => {
             expect(bot).toEqual(DiscordBot.getInstance());
         });
     });
-
-    // describe('isCorrectReadyHandler', () => {
-    //     it('should return correctHandler', async () => {
-    //         let activity = bot.getActivity();
-    //         let presence = bot.getPresence();
-    //         console.log(activity);
-    //         console.log(presence);
-    //         expect(activity).toEqual('Ready to serve!');
-    //     });
-    // });
 });
 
 bot.disconnect();
