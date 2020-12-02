@@ -27,7 +27,6 @@ export class CommandInvoker {
                 this.command = new PingCommand(message, this.client);
                 break;
             }
-            
             default:
                 this.command = new DefaultCommand(message, this.client);
         }
