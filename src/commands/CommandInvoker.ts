@@ -3,6 +3,7 @@ import { Command, CommandType } from './Command';
 import { PingCommand } from './Ping.command';
 import { Arguments } from './arguments';
 import { DefaultCommand } from './Default.command';
+import { HelpCommand } from './Help.command'
 
 export class CommandInvoker {
     constructor(private client: Client, private prefix:string) {}
@@ -18,11 +19,10 @@ export class CommandInvoker {
         let keyword =  args.command;
         let commandType = CommandType[keyword as keyof typeof CommandType];
         switch (commandType) {
-            case CommandType.say: {
-                //this.command = new SayCommand(message, args);
+            case CommandType.help: {
+                this.command = new HelpCommand(message, this.client);
                 break;
             }
-
             case CommandType.ping: {
                 this.command = new PingCommand(message, this.client);
                 break;
@@ -47,7 +47,7 @@ export class CommandInvoker {
         let parameter1: any;
         let parameter2: any;
         
-        if(args[0].toLowerCase() == 'kanye') {
+        if(args[0].toLowerCase() == 'kanye' || args[0].toLowerCase() == 'help') {
             if(args.length > 1) {
                 return {
                     command: undefined
