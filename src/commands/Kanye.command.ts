@@ -1,6 +1,8 @@
-import { Client, Message } from 'discord.js';
+import { Client, Message, MessageEmbed } from 'discord.js';
 
 import { Command, CommandType } from './Command';
+
+import {executeKanye} from '../receiver/KanyeReceiver';
 
 export class KanyeCommand extends Command<CommandType.kanye> {
     constructor(private message: Message, private client: Client) {
@@ -10,8 +12,8 @@ export class KanyeCommand extends Command<CommandType.kanye> {
     async execute(): Promise<void> {
         if(this.canExecute()) {
             try {
-                await this.message.reply('this is the kanye command');
                 //implement kanye api call
+                await executeKanye(this.message, this.client);
             } catch (err) {
                 console.error(`Could not execute Command Ping. Error: ${err.message}`);
             }
