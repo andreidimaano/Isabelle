@@ -10,6 +10,7 @@ export class ShortShort extends PomodoroTimer {
     }
 
     private studyTime: number = 25;
+    private breakTime: number = 5;
 
     async startTimer(): Promise<void> {
         
@@ -17,7 +18,7 @@ export class ShortShort extends PomodoroTimer {
         await this.message.reply(createStartEmbed((this.studyTime).toString()));
             setTimeout(async () => {
                 //remove from studying list     
-                await this.message.channel.send(this.message.author, createEndEmbed((this.studyTime).toString()));
+                await this.message.channel.send(this.message.author, createEndEmbed((this.breakTime).toString()));
                 //console.log(currentMembersStudying);
         }, 1000 * this.studyTime ); 
         /*
