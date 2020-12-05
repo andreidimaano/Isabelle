@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-require('dotenv').config({path: __dirname + '../.env'});
+require('dotenv').config({path: __dirname + '/../.env'});
 
 let riotInstance = axios.create({
     baseURL: 'https://na1.api.riotgames.com/lol',
