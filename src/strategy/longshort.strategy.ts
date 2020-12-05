@@ -15,12 +15,12 @@ export class LongShort extends PomodoroTimer {
         
         //send start message
         await this.message.reply(createStartEmbed((this.studyTime).toString()));
-        /* setTimeout{async () => {
+            setTimeout(async () => {
                 //remove from studying list     
-                await message.channel.send(message.author, endEmbed);
+                await this.message.channel.send(this.message.author, createEndEmbed((this.studyTime).toString()));
                 //console.log(currentMembersStudying);
-        }, 1000 * study timer};
-        
+        }, 1000 * this.studyTime ); 
+        /*
         setTimeout{async () => {
             //remove from break list
         }, 1000 * break timer};
