@@ -1,4 +1,4 @@
-require('dotenv').config({path: __dirname + '/..//../.env'});
+require('dotenv').config({path: __dirname + '/../../.env'});
 import axios from 'axios';
 
 //require('dotenv').config({path: __dirname + '../.env'});
