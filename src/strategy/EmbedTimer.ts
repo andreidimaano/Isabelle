@@ -15,7 +15,7 @@ let createEndEmbed = (timer: string) => {
     .setTitle('Pomodoro')
     .setTimestamp()
     .addFields(
-        { name: `:tomato: Congrats on finishing a pomodoro session :tomato:`, value: `:blush: enjoy your ${timer} break! :blush:`}
+        { name: `:tomato: Congrats on finishing a pomodoro session :tomato:`, value: `:blush: enjoy your ${timer} minute break! :blush:`}
     ) 
 }
 
