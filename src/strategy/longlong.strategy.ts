@@ -43,10 +43,16 @@ export class LongLong extends PomodoroTimer {
             this.bot.removeMember(this.message.author.tag);
         }, 100 * this.studyTime );
         
+
+        
+        this.bot.addMemberOnBreak(this.message.author.tag);
+
         setTimeout(async () => {
+            this.bot.removeMemberOnBreak(this.message.author.tag);
             //remove from break list
         }, 100 * this.breakTime);
         
+
     }
 
     
