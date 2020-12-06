@@ -5,6 +5,7 @@ import { CommandInvoker } from './commands/CommandInvoker'
 export class DiscordBot{
     private static instance: DiscordBot;
 
+    private currentMembersOnBreak: string[] = [];
     private prefix: string = '!! ';
     private currentMembersStudying: string[] = [];
 
@@ -39,6 +40,25 @@ export class DiscordBot{
           this.currentMembersStudying.splice(index,1);
         }
     }
+
+
+    getMembersOnBreak(): string[] {
+      return this.currentMembersOnBreak;
+    }
+
+
+    addMemberOnBreak(authorTag: string): void{ 
+      this.currentMembersOnBreak.push(authorTag);
+    }
+
+    removeMemberOnBreak(authorTag: string): void{
+     let index = this.currentMembersOnBreak.indexOf(authorTag);
+     if (index > -1){
+       this.currentMembersOnBreak.splice(index,1);
+      }
+    }
+
+    
     static getInstance(): DiscordBot {
         if (!DiscordBot.instance) {
           DiscordBot.instance = new DiscordBot();

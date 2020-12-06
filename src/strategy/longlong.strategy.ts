@@ -32,11 +32,11 @@ export class LongLong extends PomodoroTimer {
             await this.message.channel.send(this.message.author, createEndEmbed((this.breakTime).toString()));
             this.bot.removeMember(this.message.author.tag);
         }, 100 * this.studyTime );
-        /*
-        setTimeout{async () => {
+        
+        setTimeout(async () => {
             //remove from break list
-        }, 1000 * break timer};
-        */
+        }, 100 * this.breakTime);
+        
     }
 
     
