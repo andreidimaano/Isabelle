@@ -6,6 +6,7 @@ export class DiscordBot{
     private static instance: DiscordBot;
 
     private prefix: string = '!! ';
+    private currentMembersStudying: string[] = [];
 
     private client: Client = new Client();
     private commandInvoker: CommandInvoker = new CommandInvoker(
@@ -23,7 +24,21 @@ export class DiscordBot{
         this.setMessageHandler();
         this.setReadyHandler();
     }
+    
+    getMembersStudying(): string[] {
+        return this.currentMembersStudying;
+    }
 
+    addMemberStudying(authorTag: string): void{ 
+         this.currentMembersStudying.push(authorTag);
+    }
+
+    removeMember(authorTag: string): void{
+        let index = this.currentMembersStudying.indexOf(authorTag);
+        if (index > -1){
+          this.currentMembersStudying.splice(index,1);
+        }
+    }
     static getInstance(): DiscordBot {
         if (!DiscordBot.instance) {
           DiscordBot.instance = new DiscordBot();
