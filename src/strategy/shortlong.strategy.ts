@@ -18,10 +18,20 @@ export class ShortLong extends PomodoroTimer {
         return (this.bot.getMembersStudying().find(memberTag => memberTag === authorTag)) ? true : false;
     }
 
+    private currentlyOnBreak(authorTag: string): boolean {
+        return (this.bot.getMembersOnBreak().find(memberTag => memberTag === authorTag)) ? true : false;
+    }
+
+
     async startTimer(): Promise<void> {
         
         if (this.currentlyStudying(this.message.author.tag) ) {
             await this.message.reply('you\'re already studying');
+            return;
+        }
+
+        if (this.currentlyOnBreak(this.message.author.tag) ) {
+            await this.message.reply('you\'re on break :)');
             return;
         }
 
@@ -32,12 +42,16 @@ export class ShortLong extends PomodoroTimer {
         setTimeout(async () => {
             //remove from studying list     
             await this.message.channel.send(this.message.author, createEndEmbed((this.breakTime).toString()));
+            this.bot.removeMember(this.message.author.tag);
         }, 100 * this.studyTime ); 
-        /*
-        setTimeout{async () => {
+
+
+        this.bot.addMemberOnBreak(this.message.author.tag);
+
+        setTimeout(async () => {
+            this.bot.removeMemberOnBreak(this.message.author.tag);
             //remove from break list
-        }, 1000 * break timer};
-        */
+        }, 1000 * this.breakTime);
     }
 
     
