@@ -25,7 +25,8 @@ export class LongShort extends PomodoroTimer {
             return;
         }
         
-        //send start message
+        this.bot.addMemberStudying(this.message.author.tag);
+        
         await this.message.reply(createStartEmbed((this.studyTime).toString()));
         setTimeout(async () => {
             //remove from studying list     
