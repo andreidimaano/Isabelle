@@ -27,12 +27,12 @@ export class ShortShort extends PomodoroTimer {
 
         //send start message
         this.bot.addMemberStudying(this.message.author.tag);
-        
+
         await this.message.reply(createStartEmbed((this.studyTime).toString()));
-            setTimeout(async () => {
-                //remove from studying list     
-                await this.message.channel.send(this.message.author, createEndEmbed((this.breakTime).toString()));
-                //console.log(currentMembersStudying);
+        setTimeout(async () => {
+            //remove from studying list     
+            await this.message.channel.send(this.message.author, createEndEmbed((this.breakTime).toString()));
+            this.bot.removeMember(this.message.author.tag);
         }, 100 * this.studyTime ); 
     
         /*
