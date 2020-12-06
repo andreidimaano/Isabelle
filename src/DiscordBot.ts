@@ -32,6 +32,13 @@ export class DiscordBot{
     addMemberStudying(authorTag: string): void{ 
          this.currentMembersStudying.push(authorTag);
     }
+
+    removeMember(authorTag: string): void{
+        let index = this.currentMembersStudying.indexOf(authorTag);
+        if (index > -1){
+          this.currentMembersStudying.splice(index,1);
+        }
+    }
     static getInstance(): DiscordBot {
         if (!DiscordBot.instance) {
           DiscordBot.instance = new DiscordBot();
