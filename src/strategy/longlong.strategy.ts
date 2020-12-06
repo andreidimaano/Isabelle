@@ -17,12 +17,22 @@ export class LongLong extends PomodoroTimer {
         return (this.bot.getMembersStudying().find(memberTag => memberTag === authorTag)) ? true : false;
     }
 
+    private currentlyOnBreak(authorTag: string): boolean {
+        return (this.bot.getMembersOnBreak().find(memberTag => memberTag === authorTag)) ? true : false;
+    }
+
     async startTimer(): Promise<void> {
 
         if (this.currentlyStudying(this.message.author.tag) ) {
             await this.message.reply('you\'re already studying');
             return;
         }
+
+        if (this.currentlyOnBreak(this.message.author.tag) ) {
+            await this.message.reply('you\'re on break :)');
+            return;
+        }
+
         
         this.bot.addMemberStudying(this.message.author.tag);
 
