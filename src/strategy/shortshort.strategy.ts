@@ -20,7 +20,8 @@ export class ShortShort extends PomodoroTimer {
                 //remove from studying list     
                 await this.message.channel.send(this.message.author, createEndEmbed((this.breakTime).toString()));
                 //console.log(currentMembersStudying);
-        }, 1000 * this.studyTime ); 
+        }, 100 * this.studyTime ); 
+        
         /*
         setTimeout{async () => {
             //remove from break list
