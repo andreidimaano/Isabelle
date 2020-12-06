@@ -42,6 +42,7 @@ export class ShortLong extends PomodoroTimer {
         setTimeout(async () => {
             //remove from studying list     
             await this.message.channel.send(this.message.author, createEndEmbed((this.breakTime).toString()));
+            this.bot.removeMember(this.message.author.tag);
         }, 100 * this.studyTime ); 
 
 
