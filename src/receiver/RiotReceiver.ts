@@ -1,8 +1,5 @@
 import { Client, Message, MessageEmbed} from 'discord.js';
-
 import { riotInstance } from '../axios';
-import axios from 'axios';
-
 
 async function getAccount(SummonerName: string){
     let response = await riotInstance.get(`/summoner/v4/summoners/by-name/${SummonerName}`);
@@ -12,11 +9,7 @@ async function getAccount(SummonerName: string){
     console.log(bsummonerId);
 
     return await getStats(bsummonerId);
-
-
-
 }
-
 
 async function getStats(summonerId: string){
     let response2 = await riotInstance.get(`/league/v4/entries/by-summoner/${summonerId}`);
@@ -52,11 +45,9 @@ let newEmbed = (SummonerName: string, tier: string, rank: string, leaguePoints: 
             { name: '\u200B', value: '\u200B' },
             { name: 'wins', value: wins},
             { name: '\u200B', value: '\u200B' },
-
-
         )
 }
-// , (await accountData).SummonerName, (await accountData).tier, (await accountData).rank, (await accountData).leaguePoints, (await accountData).wins
+
 export async function executeRiot(message: Message, cleint: Client, summonerName: string){
     let accountData = await getAccount(summonerName);
     await message.reply(newEmbed(accountData.summonerName, accountData.tier, accountData.rank, accountData.leaguePoints, accountData.wins));

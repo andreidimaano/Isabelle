@@ -6,9 +6,11 @@ export enum CommandType {
     riot,
     kanye,
     pomodoro
-  }
-  
+}
+
 export abstract class Command<CommandType> {
-  abstract execute():  Promise<void>;
-  abstract canExecute(): boolean;
-  }
+    abstract execute():  string;
+    abstract canExecute(): boolean;
+    abstract isAsync(): boolean;
+}
+  

@@ -11,7 +11,12 @@ let kanyeInstance = axios.create({
     baseURL: 'https://api.kanye.rest'
 });
 
+let riotChampionInstance = axios.create({
+    baseURL: 'http://ddragon.leagueoflegends.com/cdn/10.24.1/data/en_US/champion.json',
+});
+
 export {
     riotInstance,
-    kanyeInstance
+    kanyeInstance,
+    riotChampionInstance
 }

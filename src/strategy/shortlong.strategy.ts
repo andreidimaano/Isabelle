@@ -43,15 +43,13 @@ export class ShortLong extends PomodoroTimer {
             //remove from studying list     
             await this.message.channel.send(this.message.author, createEndEmbed((this.breakTime).toString()));
             this.bot.removeMember(this.message.author.tag);
-        }, 100 * this.studyTime ); 
+            this.bot.addMemberOnBreak(this.message.author.tag);
 
-
-        this.bot.addMemberOnBreak(this.message.author.tag);
-
-        setTimeout(async () => {
-            this.bot.removeMemberOnBreak(this.message.author.tag);
-            //remove from break list
-        }, 1000 * this.breakTime);
+            setTimeout(async () => {
+                this.bot.removeMemberOnBreak(this.message.author.tag);
+                //remove from break list
+            }, 1000 * this.breakTime);
+        }, 1000 * this.studyTime ); 
     }
 
     
