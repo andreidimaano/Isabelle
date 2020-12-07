@@ -89,32 +89,25 @@ let getChampion = async (champId: number) => {
     for(let key in response.data.data){
         let value = response.data.data[key];
         if(value.key == champId){
-            return value.id
+            return value.id;
         }
     }
 }
 
 
 // , SummonerName: string, tier: string, rank: string, leaguePoints: number, wins: number
-let newEmbed = (SummonerName: string, win: boolean, rank: string, kda: string, wins: string ) => {
+let newEmbed = (image: string, SummonerName: string, win: boolean, rank: string, kda: string, wins: string ) => {
     return new MessageEmbed()
         .setColor('#0096c7')
-        .setTitle('Summoner Stats')
-        .setDescription('Stats:')
+        .setTitle(SummonerName)
+        .setDescription((win) ? 'You wont! :hear_eyes:' : 'You Lost :yawning_face')
         .setTimestamp()
         .addFields(  
-            { name: '\u200B', value: '\u200B' },
-            {name: 'Summoner Name:', value: SummonerName},
-            { name: '\u200B', value: '\u200B' },
-            {name: '', value: (win) ? 'Win' : 'Loss'},
-            { name: '\u200B', value: '\u200B' },
-            { name: 'rank', value: rank},
-            { name: '\u200B', value: '\u200B' },
-            { name: 'kda', value: kda},
-            { name: '\u200B', value: '\u200B' },
-            { name: 'wins', value: wins},
-            { name: '\u200B', value: '\u200B' },
+            {name: 'rank: ', value: rank, inline: true},
+            {name: 'kda: ', value: kda, inline: true},
+            {name: 'Wins: ', value: (wins == undefined) ? 'Unranked' : wins, inline: true},
         )
+        .setImage(image)
 }
 
 
