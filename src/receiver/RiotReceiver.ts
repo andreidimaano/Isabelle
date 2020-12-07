@@ -58,7 +58,7 @@ async function getMatchData(gameId: number, summonerId: string, champId: number)
             tier = currentRank.data[i].tier;
             rank = currentRank.data[i].rank;
             lp = currentRank.data[i].rank;
-            winloss = `${currentRank.data[i].wins}W ${currentRank.data[i].losses}L`;
+            winloss = (rank == undefined) ? 'Unranked' : `${currentRank.data[i].wins}W ${currentRank.data[i].losses}L`;
         }
     }
 
@@ -86,7 +86,7 @@ async function getMatchData(gameId: number, summonerId: string, champId: number)
 
 
 // , SummonerName: string, tier: string, rank: string, leaguePoints: number, wins: number
-let newEmbed = (SummonerName: string, tier: string, rank: string, leaguePoints: number, wins: number ) => {
+let newEmbed = (SummonerName: string, win: boolean, rank: string, kda: string, wins: string ) => {
     return new MessageEmbed()
         .setColor('#0096c7')
         .setTitle('Summoner Stats')
@@ -96,19 +96,17 @@ let newEmbed = (SummonerName: string, tier: string, rank: string, leaguePoints: 
             { name: '\u200B', value: '\u200B' },
             {name: 'Summoner Name:', value: SummonerName},
             { name: '\u200B', value: '\u200B' },
-            {name: 'tier:', value: tier},
+            {name: '', value: (win) ? 'Win' : 'Loss'},
             { name: '\u200B', value: '\u200B' },
             { name: 'rank', value: rank},
             { name: '\u200B', value: '\u200B' },
-            { name: 'rank', value: rank},
-            { name: '\u200B', value: '\u200B' },
-            { name: 'leaguePoints', value: leaguePoints},
+            { name: 'kda', value: kda},
             { name: '\u200B', value: '\u200B' },
             { name: 'wins', value: wins},
             { name: '\u200B', value: '\u200B' },
         )
-    }
 }
+
 
 
 export async function executeRiot(message: Message, cleint: Client, summonerName: string){
