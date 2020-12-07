@@ -58,10 +58,30 @@ async function getMatchData(gameId: number, summonerId: string, champId: number)
             tier = currentRank.data[i].tier;
             rank = currentRank.data[i].rank;
             lp = currentRank.data[i].rank;
-            winloss = `${currentRank.data[i].wins}W ${currentRank.data[i].losses}L';
+            winloss = `${currentRank.data[i].wins}W ${currentRank.data[i].losses}L`;
         }
     }
-}
+
+        let rankString: string;
+
+        if(rank == undefined){
+            rankString = 'Unranked'
+        } else if (tier != "MASTER" && tier != 'GRANDMASTER' && tier != 'CHALLENGER'){
+            rankString = `${tier} ${rank} ${lp} LP`;
+        } else{
+            rankString = `${tier} ${lp} LP`
+        }
+
+        return{
+            champId:champId,
+            gameId: gameId,
+            win: isVictor,
+            curentRank: rankString,
+            WL: winloss,
+            kda: `${kdaSpread} (${kda.toFixed(2)})`,
+        
+        }
+};
 
 
 
@@ -87,7 +107,9 @@ let newEmbed = (SummonerName: string, tier: string, rank: string, leaguePoints: 
             { name: 'wins', value: wins},
             { name: '\u200B', value: '\u200B' },
         )
+    }
 }
+
 
 export async function executeRiot(message: Message, cleint: Client, summonerName: string){
     let accountData = await getAccount(summonerName);
