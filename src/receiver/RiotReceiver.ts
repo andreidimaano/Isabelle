@@ -50,6 +50,17 @@ async function getMatchData(gameId: number, summonerId: string, champId: number)
     let kdaSpread = `${participant.stats.kills}/${participant.stats.death}/${participant.stats.assists}`;
     let kda = (participant.stats.kills + participant.stats.assists) / participant.stats.deaths;
 
+    let currentRank = await riotInstance.get(`/league/v4/entries/by-summoner/${summonerId}`);
+    let tier; let rank; let lp; let winloss;
+
+    for(let i in currentRank.data){
+        if(currentRank.data[i].queueType == "RANKED_SOLO_5x5"){
+            tier = currentRank.data[i].tier;
+            rank = currentRank.data[i].rank;
+            lp = currentRank.data[i].rank;
+            winloss = `${currentRank.data[i].wins}W ${currentRank.data[i].losses}L';
+        }
+    }
 }
 
 
