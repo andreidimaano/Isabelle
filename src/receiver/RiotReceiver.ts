@@ -1,5 +1,5 @@
 import { Client, Message, MessageEmbed} from 'discord.js';
-import { riotInstance } from '../axios';
+import { riotInstance, riotChampionInstance } from '../axios';
 
 async function getAccount(SummonerName: string){
     try{    
@@ -83,6 +83,16 @@ async function getMatchData(gameId: number, summonerId: string, champId: number)
         }
 };
 
+let getChampion = async (champId: number) => {
+    let response = await riotChampionInstance.get('');
+
+    for(let key in response.data.data){
+        let value = response.data.data[key];
+        if(value.key == champId){
+            return value.id
+        }
+    }
+}
 
 
 // , SummonerName: string, tier: string, rank: string, leaguePoints: number, wins: number
@@ -111,5 +121,6 @@ let newEmbed = (SummonerName: string, win: boolean, rank: string, kda: string, w
 
 export async function executeRiot(message: Message, cleint: Client, summonerName: string){
     let accountData = await getAccount(summonerName);
+    let champion = await getChampion(accountData!.champId);
     await message.reply(newEmbed(accountData.summonerName, accountData.tier, accountData.rank, accountData.leaguePoints, accountData.wins));
 }
