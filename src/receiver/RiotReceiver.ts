@@ -76,7 +76,7 @@ async function getMatchData(gameId: number, summonerId: string, champId: number)
             champId:champId,
             gameId: gameId,
             win: isVictor,
-            curentRank: rankString,
+            currentRank: rankString,
             WL: winloss,
             kda: `${kdaSpread} (${kda.toFixed(2)})`,
         
@@ -115,5 +115,6 @@ let newEmbed = (image: string, SummonerName: string, win: boolean, rank: string,
 export async function executeRiot(message: Message, cleint: Client, summonerName: string){
     let accountData = await getAccount(summonerName);
     let champion = await getChampion(accountData!.champId);
-    await message.reply(newEmbed(accountData.summonerName, accountData.tier, accountData.rank, accountData.leaguePoints, accountData.wins));
+    let image = `http://ddragon.leagueoflegends.com/cdn/10.24.1/img/champion/${champion}.png`;
+    await message.reply(newEmbed(image, summonerName, accountData!.win, accountData!.currentRank, accountData!.kda, accountData!.WL!));
 }
