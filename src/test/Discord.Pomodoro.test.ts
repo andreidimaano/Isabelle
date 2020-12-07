@@ -157,6 +157,22 @@ describe('shortlong', () => {
          expect(setTimeout).toHaveBeenLastCalledWith(expect.any(Function), 50000);
          expect(addMember).toHaveBeenCalledTimes(5);
     
+         // Fast forward and exhaust only currently pending timers
+         // (but not any new timers that get created during that process)
+         // run the first Timeout
+         jest.runOnlyPendingTimers();
+         expect(addMember).toHaveBeenCalledTimes(6);
+         expect(removeMember).toHaveBeenCalledTimes(5);
+    
+         // And it should have created a new timer to start the game over in
+         // 10 seconds
+         expect(setTimeout).toHaveBeenCalledTimes(6);
+         expect(setTimeout).toHaveBeenLastCalledWith(expect.any(Function), 10000);
 
+         // run the second Timeout
+         // no more timeouts
+         jest.runOnlyPendingTimers();
+         expect(removeMember).toHaveBeenCalledTimes(6);
+         expect(setTimeout).toHaveBeenCalledTimes(6);
      });
 });
