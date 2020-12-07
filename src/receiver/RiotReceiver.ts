@@ -43,6 +43,12 @@ async function getMatchData(gameId: number, summonerId: string, champId: number)
         }
     }
 
+    //get stats
+
+    let isVictor = participant.stats.win;
+    let totalDamageDealtToChampions = participant.stats.totalDamageDealtToChampions;
+    let kdaSpread = `${participant.stats.kills}/${participant.stats.death}/${participant.stats.assists}`;
+    let kda = (participant.stats.kills + participant.stats.assists) / participant.stats.deaths;
 
 }
 
