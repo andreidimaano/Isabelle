@@ -2,27 +2,36 @@ import { Client, Message, MessageEmbed} from 'discord.js';
 import { riotInstance } from '../axios';
 
 async function getAccount(SummonerName: string){
-    let response = await riotInstance.get(`/summoner/v4/summoners/by-name/${SummonerName}`);
-   
-    let bsummonerId = response.data.id;
-    
-    console.log(bsummonerId);
+    try{    
+        let response = await riotInstance.get(`/summoner/v4/summoners/by-name/${SummonerName}`);
 
-    return await getStats(bsummonerId);
-}
-
-async function getStats(summonerId: string){
-    let response2 = await riotInstance.get(`/league/v4/entries/by-summoner/${summonerId}`);
+        let accountId = response.data.accountId;
     
-   
-    return {
-        summonerName: response2.data[1].summonerName,
-        tier: response2.data[1].tier,
-        rank: response2.data[1].rank,
-        leaguePoints: response2.data[1].leaguePoints,
-        wins: response2.data[1].wins
+        let summonerId = response.data.id;
+        
+        return await getMatch(accountId, summonerId, 1);
+    } catch (err){
+        console.log(err.response.status)
     }
+
 }
+
+async function getMatch(accountId: string, summonerId: string, amountOfGames: number){
+    let response = await riotInstance.get(`/match/v4/matchlists/by-account/${accountId}`, {
+    
+        params: {
+            endIndex: amountOfGames,
+            beginIndex: 0
+        }
+    }   );
+
+    let gameId = response.data.matches[0].gameId;
+    let champId = response.data.matches[0].champion;
+
+    return await getMatchData(gameId, summonerId, champId);
+}
+
+
 
 // , SummonerName: string, tier: string, rank: string, leaguePoints: number, wins: number
 let newEmbed = (SummonerName: string, tier: string, rank: string, leaguePoints: number, wins: number ) => {

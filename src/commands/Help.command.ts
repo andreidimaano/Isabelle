@@ -36,6 +36,7 @@ export class HelpCommand extends Command<CommandType.help> {
         }
     }
 
+
     canExecute(): boolean {
         return true;
     }
