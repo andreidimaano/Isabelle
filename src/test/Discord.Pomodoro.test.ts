@@ -176,3 +176,17 @@ describe('shortlong', () => {
          expect(setTimeout).toHaveBeenCalledTimes(6);
      });
 });
+
+
+ describe('longshort', () => {
+     test('schedules a 10-second timer after 25 seconds', () => {
+         longshort();
+//         // At this point in time, there should have been a single call to
+//         // setTimeout to start break in 25 seconds.
+//         // At this point we have called add member()
+         expect(setTimeout).toHaveBeenCalledTimes(7);
+         expect(setTimeout).toHaveBeenLastCalledWith(expect.any(Function), 50000);
+         expect(addMember).toHaveBeenCalledTimes(7);
+
+     });
+});
