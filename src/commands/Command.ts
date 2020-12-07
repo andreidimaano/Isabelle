@@ -8,7 +8,7 @@ export enum CommandType {
     pomodoro
   }
   
-  export abstract class Command<CommandType> {
-    abstract execute():  Promise<void>;
-    abstract canExecute(): boolean;
+export abstract class Command<CommandType> {
+  abstract execute():  Promise<void>;
+  abstract canExecute(): boolean;
   }
