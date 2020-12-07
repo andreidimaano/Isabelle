@@ -135,5 +135,72 @@ describe('Discord Array test', () => {
         expect(bot.getMembersOnBreak()).toHaveLength(5);
 
     })
+    it('should remove', () => {
+        let bot = DiscordBot.getInstance();
+        bot.resetArray();
+        
+        bot.addMemberStudying('Andrei');
+        bot.addMemberStudying('Sam');
+        bot.addMemberStudying('Jarvis');
+        bot.addMemberStudying('Roger');
+        bot.addMemberStudying('Steve');
+        bot.addMemberStudying('Tony Stark');
+        expect(bot.getMembersStudying()).toHaveLength(6);
 
+        bot.removeMemberStudying('Andrei')
+        expect(bot.getMembersStudying()).toHaveLength(5);
+
+        bot.removeMemberStudying('Jarvis')
+        expect(bot.getMembersStudying()).toHaveLength(4);
+    })
+    it('should remove', () => {
+        let bot = DiscordBot.getInstance();
+        bot.resetArray();
+        
+        bot.addMemberOnBreak('Andrei');
+        bot.addMemberOnBreak('Sam');
+        bot.addMemberOnBreak('Jarvis');
+        bot.addMemberOnBreak('Roger');
+        bot.addMemberOnBreak('Steve');
+        bot.addMemberOnBreak('Tony Stark');
+        expect(bot.getMembersOnBreak()).toHaveLength(6);
+
+        bot.removeMemberOnBreak('Andrei')
+        expect(bot.getMembersOnBreak()).toHaveLength(5);
+
+        bot.removeMemberOnBreak('Jarvis')
+        expect(bot.getMembersOnBreak()).toHaveLength(4);
+    })
+    it('should return correct number', () => {
+        let bot = DiscordBot.getInstance();
+        bot.resetArray();
+        
+        bot.addMemberStudying('Andrei');
+        bot.addMemberStudying('Sam');
+        bot.addMemberStudying('Jarvis');
+        bot.addMemberStudying('Roger');
+        bot.addMemberStudying('Steve');
+        bot.addMemberStudying('Tony Stark');
+        expect(bot.getMembersStudying()).toHaveLength(6);
+
+        bot.removeMemberStudying('Andrei')
+        expect(bot.getMembersStudying()).toHaveLength(5);
+
+        bot.removeMemberStudying('Jarvis')
+        expect(bot.getMembersStudying()).toHaveLength(4);
+
+        bot.addMemberOnBreak('Andrei');
+        bot.addMemberOnBreak('Sam');
+        bot.addMemberOnBreak('Jarvis');
+        bot.addMemberOnBreak('Roger');
+        bot.addMemberOnBreak('Steve');
+        bot.addMemberOnBreak('Tony Stark');
+        expect(bot.getMembersOnBreak()).toHaveLength(6);
+
+        bot.removeMemberOnBreak('Andrei')
+        expect(bot.getMembersOnBreak()).toHaveLength(5);
+
+        bot.removeMemberOnBreak('Jarvis')
+        expect(bot.getMembersOnBreak()).toHaveLength(4);
+    })
 })
