@@ -31,6 +31,21 @@ async function getMatch(accountId: string, summonerId: string, amountOfGames: nu
     return await getMatchData(gameId, summonerId, champId);
 }
 
+async function getMatchData(gameId: number, summonerId: string, champId: number){
+    let response = await riotInstance.get(`/match/v4/matches/${gameId}`);
+
+    let participant: any;
+
+    for(let key in response.data.participants){
+        let value = response.data.participants[key];
+        if(value.championId == champId){
+            participant = value;
+        }
+    }
+
+
+}
+
 
 
 // , SummonerName: string, tier: string, rank: string, leaguePoints: number, wins: number
