@@ -138,7 +138,11 @@ describe('executeRiot', () => {
     
             let riot = getAccount('El Platano');
             riot.then(response => {
-                expect(response.accountId).toBe(data.accountId);
+                if(response.summonerId == undefined) {
+                    expect(response).toBe(429)
+                } else {
+                    expect(response.summonerId).toBe(data.id);
+                }             
             })
         })
 
