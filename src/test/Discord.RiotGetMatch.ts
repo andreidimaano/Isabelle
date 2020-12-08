@@ -58,5 +58,25 @@ describe('executeRiot', () =>{
             })
         }) 
     })
+
+    describe('getMatch', () => {
+        it('should be the same match', async () => {
+            let data = {
+                gameId: 3695716766,
+                id: 'O_1ySJMgZ_UQgjZtZ7hloLH85HsVoQZgmxV1iFvbK1HNNLk',
+                champId: 81,
+            };
+    
+            let riot = getAccount('El Platano');
+            riot.then(response => {
+                if(response.gameId == undefined) {
+                    expect(response).toBe(429)
+                } else {
+                    expect(response.gameId).toBe(data.gameId);
+                }
+            })
+        }) 
+    })
+
     
 })
