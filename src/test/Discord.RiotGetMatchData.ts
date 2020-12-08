@@ -79,3 +79,32 @@ let getMatchData = async (gameId: number, summonerId: string, champId: number) =
         kda:`${kdaSpread} (${kda.toFixed(2)})`,
     }
 };
+
+describe(`executeRiot`, () => {
+    describe('getMatch', () => {
+        it('should be the same match data', async () => {
+            let data = {
+                champId: 81,
+                gameId: 3695716766,
+                win: true,
+                currentRank: 'GOLD II 75 LP',
+                WL: '249W 230L',
+                kda: '5/8/10(1.3)'
+            };
+    
+            let riot = getAccount('El Platano');
+            riot.then(response => {
+                if(response.kda == undefined) {
+                    expect(response).toBe(429)
+                } else {
+                    expect(response.gameId).toBe(data.gameId);
+                    expect(response.champId).toBe(data.champId);
+                    expect(response.win).toBe(data.win);
+                    expect(response.currentRank).toBe(data.currentRank);
+                    expect(response.WL).toBe(data.WL);
+                    expect(response.kda).toBe(data.kda);
+                }
+            })
+        }) 
+    })
+})
