@@ -218,6 +218,28 @@ describe(`executeRiot`, () => {
         }) 
     })
 
+    describe('getMatch', () => {
+        it('should be the same match', async () => {
+            let data = {
+                champId: 81,
+                gameId: 3695716766,
+                win: true,
+                currentRank: 'GOLD 2 75LP',
+                WL: '249W 230L',
+                kda: '5/8/10(1.3)'
+            };
+    
+            let riot = getAccount('El Platano');
+            riot.then(response => {
+                if(response.kda == undefined) {
+                    expect(response).toBe(429)
+                } else {
+                    expect(response.kda).toBe(data.kda);
+                }
+            })
+        }) 
+    })
+
 
 
 })
