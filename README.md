@@ -1,13 +1,5 @@
 # Discord Bot
  Authors: \<[Andrei Dimaano](https://github.com/andreidimaano)\> \<[Samuel Lagunas](https://github.com/slagu002)\>  \<[Jarvis Bui](https://github.com/jbui019)\>   
- 
- > ## Expectations
- > * Incorporate **three** distinct design patterns, *two* of the design patterns need to be taught in this course:
- >   * Composite, Strategy, Abstract Factory, Visitor
- > * All three design patterns need to be linked together (it can't be three distinct projects)
- > * Your project should be implemented in C/C++. If you wish to choose anoher programming language (e.g. Java, Python), please discuss with your lab TA to obtain permission.
- > * You can incorporate additional technologies/tools but they must be approved (in writing) by the instructor or the TA.
- > * Each member of the group **must** be committing code regularly and make sure their code is correctly attributed to them. We will be checking attributions to determine if there was equal contribution to the project.
 
 ## Project Description
 
