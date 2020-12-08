@@ -41,6 +41,9 @@ Discord is an integral part of many students' lives. Whether we are playing vide
     - Prefix is the prefix needed for commands (i.e "!!RIOT" the prefix is "!!")
     - client and connect() are handlers for connecting the bot wiht discord servers
     - setMessageHandler will accept messages from the server and parse the message into a command
+    - singleton are global access which makes it perfect for handling the members currently studying or on break
+    - DiscordBot has getters and setters that will allow the strategy pattern to access the current members on break or studying
+    - Singleton contains CommandInvoker that which will parse the command and set the command to execute.
     
   - Command
     - Command declares interface for executing Riot or Pomodoro
@@ -48,11 +51,20 @@ Discord is an integral part of many students' lives. Whether we are playing vide
     - CommandInvoker asks commands to carry out request
     - Riot/Pomodoro defines binding between Receiver object and an action
     - implements execute by invoking operations on Receiver
+    - Command has a parse function that takes in a Message Object and parses the correct command based on the message content
+    - There are 5 commands: Help, Riot, Kanye, Pomodoro, Default
+    - Help lists all the commands
+    - Riot leverages the Riot API and displays stats from the most recent game of a player
+    - Kanye leverages the Kanye West API and will display a random Kanye quote and image
+    - Pomodoro is a study bot that allows users to set up a study/break timer
+    - Default means that the command is invalid
     
  - Strategy
     - PomodoroReceiver maintains a reference to one of the concrete strategies and communicates with this object only via the strategy interface.
     - strategy interface declares the execute method the PomodoroReceiver uses to execute a strategy.
     - There are 4 concrete strategies : Long Long, Long Short, Short Long, Short Short. These strategies refer to Focus Time: Break Time, respectively. The times used for these pomodoro strategies are predetermined.
+    - Pomodoro uutilizes the singleton DiscordBot to get access of the members studying or on break. The singleton pattern ensures a global instance of the member arrays which is useful because we need every strategy to have access to the members array
+    - The strategy patterns take advantage of nested SetTimeout function in order to create the illusion of a timer.
   
   TLDR:
   Whenever a user in a discord server sends a message with the prefix: "!!" the bot will parse the message and execute the correct command. If the command is "!!Riot [summonerName]" then the discord bot will fetch statistics from a person's latest League Match". If the command is "!!Pomodoro [strategy]" the bot will parse the strategy and execute the respective strategy
