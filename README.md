@@ -19,6 +19,8 @@ Discord is an integral part of many students' lives. Whether we are playing vide
   - Typescript: While design patterns are *possible* in Javascript, Typescript allows for encapsulation. The added types means that we can code in an object-oriented manner rather than functionally. 
   - DiscordJS : Useful API that will allow us to create the discord bot, DiscordC++ exists, however, the documentation is not as updated. 
   - Riot API : The Riot API allows us to get information about a user's last-played match. We will be fetching user data from the Riot API and sending an embedded message in Discord.
+  - Kanye rest: An API that allows us to get random Kanye West quotes (explicit warning)
+  - Jest : testing interface for javascript
 - I/O:
   - Input: Messages sent by users in a discord server - "!!Riot [summoner name]" "!!Pomodoro [time]" 
   - Output: Reply Messages sent by  the bot in a discord server
@@ -68,15 +70,6 @@ Discord is an integral part of many students' lives. Whether we are playing vide
   
   TLDR:
   Whenever a user in a discord server sends a message with the prefix: "!!" the bot will parse the message and execute the correct command. If the command is "!!Riot [summonerName]" then the discord bot will fetch statistics from a person's latest League Match". If the command is "!!Pomodoro [strategy]" the bot will parse the strategy and execute the respective strategy
- 
- > ## Phase III
- > You will need to schedule a check-in with the TA (during lab hours or office hours). Your entire team must be present. 
- > * Before the meeting you should perform a sprint plan like you did in Phase II
- > * In the meeting with your TA you will discuss: 
- >   - How effective your last sprint was (each member should talk about what they did)
- >   - Any tasks that did not get completed last sprint, and how you took them into consideration for this sprint
- >   - Any bugs you've identified and created issues for during the sprint. Do you plan on fixing them in the next sprint or are they lower priority?
- >   - What tasks you are planning for this next sprint.
 
  > ## Final deliverable
  > All group members will give a demo to the TA during lab time. The TA will check the demo and the project GitHub repository and ask a few questions to all the team members. 
@@ -86,7 +79,20 @@ Discord is an integral part of many students' lives. Whether we are playing vide
  ## Screenshots
  > Screenshots of the input/output after running your application
  ## Installation/Usage
- > Instructions on installing and running your application
+ *Instructions for Modification:*
+ 1. Install NodeJS
+ 2. Create a Discord Application from https://discord.com/developers/applications 
+ 3. Add the Discord Bot to a server
+ 4. Get a riot api key from https://developer.riotgames.com/
+ 5. Create a file called ".env" in the parent directory and add your discord_token and RIOT_API keys
+ 6. run yarn install
+ 7. run yarn dev
+ 8. type !! help in your server to see the rest of the commands
+ 
+ *Instructions for face value installation*
+ 1. https://discord.com/oauth2/authorize?client_id=780286482828230656&scope=bot
+ 2. add issues whenever the riot command does not work (we need to reset the API key)
+ 
  ## Testing
- > How was your project tested/validated? If you used CI, you should have a "build passing" badge in this README.
+ We created **100+** test cases for this project. We utilized jest, a testing framework for javascript to test our code. Because our actual application required Discord API libraries, we needed to create stubs, drivers, and complete mocks of the actual discord bot. In essence, our bot takes in user strings and output strings but with a little more flare and Discord API magic behind the scenes. Down to its core, the application can be broken down into just user strings and output strings. Thus, our mocks stripped down the Discord API magic and left behind just the essentials: async/await, strings, numbers, and objects. We were able to thorougly test our project for different user inputs, handle edge cages, and handle error messages. Finally, for integration testing, we manually tested user inputs in our Discord Server.
  
