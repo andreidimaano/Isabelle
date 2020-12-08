@@ -461,6 +461,19 @@ describe('executeRiot', () => {
             }) 
         })
 
+        it('should return error', async () => {
+            let riot = getAccount('fawerfwefr');
+            riot.then(response => {
+                expect(response).toBe(404);
+            })
+        })
+        it('should return error', async () => {
+            let riot = getAccount('12347ssdf');
+            riot.then(response => {
+                expect(response).toBe(404);
+            })
+        })
+
 
     })
 })
