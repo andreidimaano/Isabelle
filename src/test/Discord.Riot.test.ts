@@ -440,13 +440,25 @@ describe('executeRiot', () => {
             }) 
         })
 
-
-
-        it('should return error', async () => {
-            let riot = getAccount('fawerfwefr');
+        it('should be the same name', async () => {
+            let accountId = "3NHFJA9EQMFwDB4Q__7eD5wFS0DmCck_QUAiPgnh2Ucuvyw";
+            let id = "IXHMPoOk4f57Qp7I-J2__yPkutc7m0c4u8VSpKR2tkvP_w";
+            let name = "IlIlIlIlI";
+    
+            let data = {
+                accountId: accountId,
+                id: id,
+                name: name
+            };
+    
+            let riot = getAccount('ilililili');
             riot.then(response => {
-                expect(response).toBe(404);
-            })
+                if(response.summonerId == undefined) {
+                    expect(response).toBe(429)
+                } else {
+                    expect(response.name).toBe(data.name);
+                }
+            }) 
         })
 
 
