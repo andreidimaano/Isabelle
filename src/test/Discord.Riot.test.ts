@@ -167,6 +167,27 @@ describe('executeRiot', () => {
             })
         })
 
+        it('should be the account id', async () => {
+            let accountId = "4kGjw1InJwDgDBCazWqB3BwRXe1PfojVdAI1ApJjpgAjtDg";
+            let id = "O_1ySJMgZ_UQgjZtZ7hloLH85HsVoQZgmxV1iFvbK1HNNLk";
+            let name = "El Platano";
+    
+            let data = {
+                accountId: accountId,
+                id: id,
+                name: name
+            };
+    
+            let riot = getAccount('elplatano');
+            riot.then(response => {
+                if(response.summonerId == undefined) {
+                    expect(response).toBe(429)
+                } else {
+                    expect(response.accountId).toBe(data.accountId);
+                }
+            })
+        })
+
         it('should be the same name', async () => {
             let accountId = "3NHFJA9EQMFwDB4Q__7eD5wFS0DmCck_QUAiPgnh2Ucuvyw";
             let id = "IXHMPoOk4f57Qp7I-J2__yPkutc7m0c4u8VSpKR2tkvP_w";
