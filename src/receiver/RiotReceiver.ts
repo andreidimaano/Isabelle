@@ -47,8 +47,8 @@ async function getMatchData(gameId: number, summonerId: string, champId: number)
 
     let isVictor = participant.stats.win;
     let totalDamageDealtToChampions = participant.stats.totalDamageDealtToChampions;
-    let kdaSpread = `${participant.stats.kills}/${participant.stats.death}/${participant.stats.assists}`;
-    let kda = (participant.stats.kills + participant.stats.assists) / participant.stats.deaths;
+    let kdaSpread = `${participant.stats.kills}/${participant.stats.deaths}/${participant.stats.assists}`;
+    let kda = (participant.stats.kills + participant.stats.assists)/participant.stats.deaths;
 
     let currentRank = await riotInstance.get(`/league/v4/entries/by-summoner/${summonerId}`);
     let tier; let rank; let lp; let winloss;
@@ -57,7 +57,7 @@ async function getMatchData(gameId: number, summonerId: string, champId: number)
         if(currentRank.data[i].queueType == "RANKED_SOLO_5x5"){
             tier = currentRank.data[i].tier;
             rank = currentRank.data[i].rank;
-            lp = currentRank.data[i].rank;
+            lp = currentRank.data[i].leaguePoints;
             winloss = (rank == undefined) ? 'Unranked' : `${currentRank.data[i].wins}W ${currentRank.data[i].losses}L`;
         }
     }
@@ -100,7 +100,7 @@ let newEmbed = (image: string, SummonerName: string, win: boolean, rank: string,
     return new MessageEmbed()
         .setColor('#0096c7')
         .setTitle(SummonerName)
-        .setDescription((win) ? 'You wont! :hear_eyes:' : 'You Lost :yawning_face')
+        .setDescription((win) ? 'you WON!! :heart_eyes:' : 'You Lost :yawning_face')
         .setTimestamp()
         .addFields(  
             {name: 'rank: ', value: rank, inline: true},
