@@ -201,7 +201,11 @@ describe('executeRiot', () => {
     
             let riot = getAccount('Trieuloo');
             riot.then(response => {
-                expect(response.name).toBe(data.name);
+                if(response.summonerId == undefined) {
+                    expect(response).toBe(429)
+                } else {
+                    expect(response.name).toBe(data.name);
+                }
             }) 
         })
 
