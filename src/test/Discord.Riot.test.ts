@@ -104,6 +104,27 @@ describe('executeRiot', () => {
             }) 
         })
 
+        it('should be the same account', async () => {
+            let accountId = "4kGjw1InJwDgDBCazWqB3BwRXe1PfojVdAI1ApJjpgAjtDg";
+            let id = "O_1ySJMgZ_UQgjZtZ7hloLH85HsVoQZgmxV1iFvbK1HNNLk";
+            let name = "El Platano";
+    
+            let data = {
+                accountId: accountId,
+                id: id,
+                name: name
+            };
+    
+            let riot = getAccount('el PlaTaNo');
+            riot.then(response => {
+                if(response.summonerId == undefined) {
+                    expect(response).toBe(429)
+                } else {
+                    expect(response.name).toBe(data.name);
+                }
+            })  
+        })
+
         it('should be the account id', async () => {
             let accountId = "4kGjw1InJwDgDBCazWqB3BwRXe1PfojVdAI1ApJjpgAjtDg";
             let id = "O_1ySJMgZ_UQgjZtZ7hloLH85HsVoQZgmxV1iFvbK1HNNLk";
