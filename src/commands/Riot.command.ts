@@ -1,6 +1,7 @@
 import { Client, Message } from 'discord.js';
 
 import { Command, CommandType } from './Command';
+import { executeRiot } from '../receiver/RiotReceiver';
 
 export class RiotCommand extends Command<CommandType.riot> {
     constructor(private message: Message, private client: Client, private summonerName: string) {
@@ -10,8 +11,7 @@ export class RiotCommand extends Command<CommandType.riot> {
     async execute(): Promise<void> {
         if(this.canExecute()) {
             try {
-                await this.message.reply('this is the riot command');
-                //await riot receiver
+                await executeRiot(this.message, this.client, this.summonerName);
             } catch (err) {
                 console.error(`Could not execute Command Ping. Error: ${err.message}`);
             }
